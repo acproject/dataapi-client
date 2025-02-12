@@ -3,39 +3,8 @@ import axios, { type AxiosError } from "axios";
 
 import { CLIENT_ID, CLIENT_SECRET, GRANT_TYPE, PASSWORD, USER_ADMIN, USERNAME } from "@/constant/oauth2constant";
 import type { AsyncThunkError, ApiError } from "@/types/api";
+import  type { UserInfo, AuthState } from "@/store/model";
 
-
-export interface UserInfo {
-    id: string;
-    username: string;
-    firstName?: string;
-    lastName?: string;
-    email: string;
-    emailVerified?: boolean;
-    createdTimestamp?: number;
-    enabled?: boolean;
-    access?: {
-        manageGroupMembership: boolean;
-        view: boolean;
-        mapRoles: boolean;
-        impersonate: boolean;
-        manage: boolean;
-    };
-    roles?: string[];
-}
-
-
-export interface AuthState {
-    token: string | null;
-    refreshToken: string | null;
-    expiresAt: number | null;
-    status?: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error?: string | null;
-    userInfo?: UserInfo | null;
-    scope?:string|null;
-    sessionState?: string | null
-    tokenType?:string | null
-}
 
 const initialState: AuthState = {
     token: null,
@@ -45,6 +14,38 @@ const initialState: AuthState = {
     error: null,
     userInfo: null,
 };
+
+export const register = createAsyncThunk<
+   UserInfo,
+    { username: string; password: string; email: string; role?: string; },
+    { rejectValue: AsyncThunkError }
+>(
+    "auth/register", async (userData, {rejectWithValue}) => {
+        try {
+            // 先获得管理员Token
+            const adminToken = await getTokenAysnc();
+            // 设置API URL
+            const apiURL = `${process.env.NEXT_PUBLIC_API_URL}/admin/users/create`;
+            // 使用管理员权限创建用户
+            const response = await axios.post(
+                apiURL,
+                {
+                    headers:{
+                        Authorization: `Bearer ${adminToken.access_token}`,
+                    },
+                }
+            );
+            return response.data;
+        } 
+        catch (error) {
+            const axiosError = error as AxiosError<ApiError>;
+            return rejectWithValue({
+                error: axiosError.response?.data || {
+                    message: 'Authentication failed'
+                }
+            });
+        }
+});
 
 export const login = createAsyncThunk<
     AuthState,
@@ -65,7 +66,6 @@ export const login = createAsyncThunk<
                 session_state:"c8ac0670-d6c2-41a2-b359-41d9edce678d",
                 token_type: "Bearer"
                 */
-
                 const tokenResponse = await getTokenAysnc();
                 const userInfoResponse = await axios.post(
                     "http://localhost:8080/public/login",
@@ -242,14 +242,26 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+        .addCase(register.pending, (state) => {
+            state.status = 'loading';
+            state.error = null;
+        })
+        .addCase(register.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.userInfo = action.payload;
+        })
+        .addCase(register.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.payload as unknown as string || 'Registration failed';
+        })
             .addCase(login.pending, (state) => {
                 state.status = 'loading';
                 state.error = null;
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.token = action.payload.token;
-                state.refreshToken = action.payload.refreshToken;
+                state.token = null;
+                state.refreshToken = null;
                 state.expiresAt = Date.now() + (action.payload.expiresAt??0) * 1000;
                 state.userInfo = action.payload.userInfo;
             })

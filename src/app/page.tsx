@@ -1,12 +1,11 @@
 "use client"
-
-import Dashboard from "./dashboard/page";
+import Project from "./project/page";
 
 
 
 export default function Home() {
   return (
-   <Dashboard />
+   <Project />
   );
 }
 

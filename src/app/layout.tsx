@@ -1,7 +1,15 @@
 
 import "./globals.css";
 import DashboardWrapper from "./dashboardWrapper";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
 
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata:Metadata = {
+  title: "Data API Editor",
+  description: "Data API Editor",
+};
 export default function RootLayout({
 
 
@@ -12,7 +20,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <DashboardWrapper>
           {children}
           </DashboardWrapper>
