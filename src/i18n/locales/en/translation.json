@@ -1,0 +1,46 @@
+{  
+    "flow":
+    { 
+        "button":{
+            "add":"add",
+            "delete":"delete",
+            "edit":"edit",
+            "save":"save",
+            "cancel":"cancel",
+            "close":"close",
+            "exec":"execute"
+        },
+        "node": {
+            "start":"Start",
+            "process":"Process",
+            "end":"End",
+            "decision":"Decision"
+        },
+        "control_library":"control library",
+        "propertyPanel":{
+            "title":"node property",
+            "label":"label"
+        }
+      
+    },
+    "sidebar": {
+        "button":{
+            "add":"add",
+            "delete":"delete",
+            "edit":"edit",
+            "save":"save",
+            "cancel":"cancel",
+            "close":"close",
+            "exec":"execute"
+        },
+        "label": {
+            "project":"Project",
+            "database":"Database",
+            "users":"Users",
+            "store":"Store",
+            "flows":"Flows",
+            "knowledge":"Knowledge",
+            "settings":"Settings"
+        }
+    }
+}

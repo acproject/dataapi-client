@@ -8,7 +8,7 @@ import {
     useSelector,
     Provider,
 } from 'react-redux';
-import gloablReducer from '@/store';
+import globalReducer from '@/store';
 import { api } from '@/store/api';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
@@ -24,25 +24,25 @@ import {
 } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
+import authSlice from '@/store/slice/authSlice';
 /* REDUX PERSISTENCE */
-const createNoopStorage = () => {
+function createNoopStorage() {
     return {
-    
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         getItem(_key: unknown) {
-            return Promise.resolve(null)
+            return Promise.resolve(null);
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setItem(_key: unknown, value: unknown) {
-            return Promise.resolve(value)
+            return Promise.resolve(value);
         },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         removeItem(_key: unknown) {
-            return Promise.resolve()
+            return Promise.resolve();
         },
-
     };
-};
+}
 
 
 const storage =
@@ -58,7 +58,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    global: gloablReducer,
+    global: globalReducer,
+    auth: authSlice,
     [api.reducerPath]: api.reducer,
 });
 
@@ -79,7 +80,7 @@ export const makeStore = () => {
 
 /* REDUX TYPES */
 export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore["getState"]>;
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = AppStore["dispatch"];
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -90,7 +91,7 @@ export default function StoreProvider({
 }: {
     children: React.ReactNode
 }) {
-    const storeRef = useRef<AppStore>();
+    const storeRef = useRef<AppStore | null>(null);
     if (!storeRef.current) {
         storeRef.current = makeStore();
         setupListeners(storeRef.current.dispatch);

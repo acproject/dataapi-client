@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/redux";
 import { setIsSidebarCollapsed } from "@/store";
+import { useTranslation } from 'react-i18next';
+
 
 interface SidebarLinkProps {
     href: string | UrlObject;
@@ -21,7 +23,7 @@ const SidebarLink = ({
 }: SidebarLinkProps) => {
     const pathname = usePathname();
     const isActive = pathname === href || (pathname === '/' && href === '/dashboard');
-
+   
     return (
         <Link href={href}>
             <div className={`cursor-pointer flex items-center ${isCollapsed
@@ -49,6 +51,7 @@ const Sidebar = () => {
 
     const sidebarClassName = `fixed flex flex-col ${isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"
         } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
+        const { t } = useTranslation();
 
     return (
         <div className={sidebarClassName}>
@@ -69,25 +72,44 @@ const Sidebar = () => {
                 <SidebarLink
                     href="/project"
                     icon={Layout}
-                    label="Project"
+                    label={t('sidebar.label.project')}
                     isCollapsed={isSidebarCollapsed}
                 />
                 <SidebarLink
                     href='/database'
                     icon={Layout}
-                    label="Database"
+                    label={t('sidebar.label.database')}
                     isCollapsed={isSidebarCollapsed}
                 />
+                <SidebarLink
+                    href='/users'
+                    icon={Layout}
+                    label={t('sidebar.label.users')}
+                    isCollapsed={isSidebarCollapsed}
+                />
+
                 <SidebarLink
                     href='/store'
                     icon={Layout}
-                    label="Store"
+                    label={t('sidebar.label.store')}
                     isCollapsed={isSidebarCollapsed}
                 />
                 <SidebarLink
-                    href='/setting'
+                    href='/flows'
+                    icon={Layout}
+                    label={t('sidebar.label.flows')}
+                    isCollapsed={isSidebarCollapsed}
+                />
+                <SidebarLink
+                    href='/knowledge'
+                    icon={Layout}
+                    label={t('sidebar.label.knowledge')}
+                    isCollapsed={isSidebarCollapsed}
+                />
+                <SidebarLink
+                    href='/settings'
                     icon={SlidersHorizontal}
-                    label="Setting"
+                    label={t('sidebar.label.settings')}
                     isCollapsed={isSidebarCollapsed}
                 />
 

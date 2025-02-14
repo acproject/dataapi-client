@@ -1,0 +1,1 @@
+export type NodeType = 'start' | 'process' | 'end' | 'decision' | 'custom';

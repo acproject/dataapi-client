@@ -1,0 +1,48 @@
+{  
+    "flow":
+
+    { "button":{
+            "add":"增加",
+            "delete":"删除",
+            "edit":"编辑",
+            "save":"保存",
+            "cancel":"取消",
+            "close":"关闭",
+            "exec":"执行"
+        },
+        "node": {
+            "start":"开始节点",
+            "process":"过程节点",
+            "end":"结束节点",
+            "decision":"判断节点"
+        },
+        "control_library":"控件库",
+        "propertyPanel":{
+            "title":"节点属性",
+            "label":"标签"
+           
+        }
+    },
+    "sidebar": {
+        "button":{
+            "add":"增加",
+            "delete":"删除",
+            "edit":"编辑",
+            "save":"保存",
+            "cancel":"取消",
+            "close":"关闭",
+            "exec":"执行"
+        },
+        "label": {
+            "project":"项目",
+            "database":"数据管理",
+            "users":"用户管理",
+            "store":"存储管理",
+            "flows":"流程管理",
+            "knowledge":"知识库",
+            "settings":"设置"
+        }
+    }
+        
+    
+}

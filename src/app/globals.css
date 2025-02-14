@@ -45,3 +45,7 @@ body,
     grid-template-rows: repeat(8, 7.5vh);
   }
 }
+
+.react-flow__pane {
+  user-select: none;
+}
