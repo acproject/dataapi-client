@@ -22,7 +22,7 @@ const FlowEditor = () => {
     const { t } = useTranslation();
     const [nodes, setNodes, onNodesChange] = useNodesState<FlowNode[]>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState<FlowEdge[]>([]);
-    const [selectedNode, setSelectedNode] = useState<FlowNode | null>(null);
+    const [selectedNode, setSelectedNode] = useState<Node | null>(null);
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
@@ -46,7 +46,7 @@ const FlowEditor = () => {
             },
         };
 
-        setNodes((nds) => nds.concat(newNode));
+        setNodes((nds) => nds.concat(newNode as Node));
     }, [reactFlowInstance, setNodes]);
 
     const onConnect = useCallback(

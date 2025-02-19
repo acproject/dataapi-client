@@ -3,7 +3,7 @@ import type { NodeType } from "./nodeType";
 export interface FlowNode {
     id: string;
     type: NodeType;
-    postion: {
+    position: {
         x: number;
         y: number;
     };
