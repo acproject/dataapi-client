@@ -1,19 +1,17 @@
 'use client'
 import { Bell, Menu, Moon, Settings, Sun } from 'lucide-react';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '@/store/redux';
-import { setIsSidebarCollapsed, setIsDarkMode } from '@/store';
+import { useStore } from '@/store/useStore';
 
 const Navbar = () => {
-    const dispatch = useAppDispatch();
-    const isSidebarCollapsed = useAppSelector(state => state.global.isSidebarCollapsed);
-    const isDarkMode = useAppSelector(state => state.global.isDarkMode);
-    const toggleSidebar = () => {
-        dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
+
+    const { isDarkMode, isSidebarCollapsed, setSidebarCollapsed, setDarkMode } = useStore();
+       const toggleSidebar = () => {
+        setSidebarCollapsed(!isSidebarCollapsed);
     };
 
     const toggleDarkMode = () => {
-        dispatch(setIsDarkMode(!isDarkMode));
+       setDarkMode(!isDarkMode);
     };
     return (
         <div className='flex justify-between items-center w-full mb-7'>
@@ -29,12 +27,6 @@ const Navbar = () => {
                     {/* <input type='search' placeholder=' Start type to search groups & products'
                         className='pl-10 pr-4 py-2 w-50 md:w-60 border-2 border-gray-300 bg-white rounded-lg 
         focus:outline-none focus:border-blue-500' /> */}
-
-                    <div
-                        className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'
-                    >
-                        <Bell className='text-gray-500' size={20} />
-                    </div>
                 </div>
             </div>
             {/* Right Side */}

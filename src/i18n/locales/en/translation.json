@@ -1,4 +1,9 @@
 {
+    "app":{
+        "title": "Data-API-Editor",
+        "description": "A low-code editor that quickly implements API interfaces through data."
+    },
+
     "flow": {
         "button": {
             "add": "add",

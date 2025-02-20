@@ -1,4 +1,9 @@
 {
+    "app":{
+        "title": "API-编辑器",
+        "description": "通过数据快速实现API接口的低代码编辑器"
+    },
+
     "flow": {
         "button": {
             "add": "增加",

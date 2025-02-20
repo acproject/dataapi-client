@@ -1,8 +1,8 @@
 "use client"
-import Project from "./project/page";
+import Project from '../(dashboard)/project/page';
 
 
-import '@/i18n';
+
 export default function Home() {
   return (
    <Project />

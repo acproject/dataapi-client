@@ -1,5 +1,5 @@
 
-export const USER_ADMIN = "user_admin";
+export const USER_ADMIN = "admin";
 export const CODE = "code";
 export const TOKEN = "token";
 export const REFRESH_TOKEN = "refresh_token";
