@@ -1,46 +1,130 @@
-{  
-    "flow":
-    { 
-        "button":{
-            "add":"add",
-            "delete":"delete",
-            "edit":"edit",
-            "save":"save",
-            "cancel":"cancel",
-            "close":"close",
-            "exec":"execute"
+{
+    "flow": {
+        "button": {
+            "add": "add",
+            "delete": "delete",
+            "edit": "edit",
+            "save": "save",
+            "cancel": "cancel",
+            "close": "close",
+            "exec": "execute"
         },
         "node": {
-            "start":"Start",
-            "process":"Process",
-            "end":"End",
-            "decision":"Decision"
+            "start": "Start",
+            "process": "Process",
+            "end": "End",
+            "decision": "Decision"
         },
-        "control_library":"control library",
-        "propertyPanel":{
-            "title":"node property",
-            "label":"label"
+        "control_library": "control library",
+        "propertyPanel": {
+            "title": "node property",
+            "label": "label"
         }
-      
     },
     "sidebar": {
-        "button":{
-            "add":"add",
-            "delete":"delete",
-            "edit":"edit",
-            "save":"save",
-            "cancel":"cancel",
-            "close":"close",
-            "exec":"execute"
+        "button": {
+            "add": "add",
+            "delete": "delete",
+            "edit": "edit",
+            "save": "save",
+            "cancel": "cancel",
+            "close": "close",
+            "exec": "execute"
         },
         "label": {
-            "project":"Project",
-            "database":"Database",
-            "users":"Users",
-            "store":"Store",
-            "flows":"Flows",
-            "knowledge":"Knowledge",
-            "settings":"Settings"
+            "project": "Project",
+            "database": "Database",
+            "users": "Users",
+            "store": "Store",
+            "flows": "Flows",
+            "knowledge": "Knowledge",
+            "settings": "Settings"
+        }
+    },
+    "status": {
+        "success": "success",
+        "error": "error",
+        "warning": "warning",
+        "info": "info",
+        "loading": "loading...",
+        "signing": "signing...",
+        "logout": "logout",
+        "login": "login",
+        "registering": "registering",
+        "register": "register",
+        "logout_success": "logout success",
+        "login_success": "login success",
+        "register_success": "register success",
+        "login_failed": "login failed",
+        "register_failed": "register failed"
+    },
+    "form": {
+        "button": {
+            "add": "add",
+            "delete": "delete",
+            "edit": "edit",
+            "save": "save",
+            "cancel": "cancel",
+            "close": "close",
+            "exec": "execute",
+            "login": "login",
+            "sign_in": "sign in"
+        },
+        "text": {
+            "dont_have_account": "Don't have account?",
+            "have_account": "Have account?",
+            "sign_in_now": "Sign in now",
+            "login_now": "login now"
+        },
+        "title": {
+            "login": "login",
+            "register": "sign in"
+        },
+        "label": {
+            "form": "form",
+            "field": "field",
+            "group": "group",
+            "username": "username",
+            "password": "password",
+            "email": "email",
+            "organization": "组织",
+            "phone": "电话",
+            "first_name": "first name",
+            "last_name": "last name",
+            "confirm_password": "confirm password"
+        },
+        "field": {
+            "text": "text",
+            "textarea": "textarea",
+            "select": "select",
+            "checkbox": "checkbox",
+            "radio": "radio",
+            "date": "date",
+            "time": "time",
+            "datetime": "datetime",
+            "number": "number",
+            "password": "password"
+        },
+        "placeholder": {
+            "text": "Input text",
+            "textarea": "Input text",
+            "select": "Select",
+            "checkbox": "Choose",
+            "radio": "Choose",
+            "date": "Input date",
+            "time": "Input time",
+            "datetime": "Choose date and time",
+            "number": "Input Number",
+            "password": "Input password",
+            "username": "Input username",
+            "username_not_null": "username can not be null",
+            "password_not_null": "password can not be null",
+            "email_not_null": "email can not be null",
+            "email_not_valid": "email is not valid",
+            "organization_not_null": "organization can not be null",
+            "password_not_match": "password not match",
+            "email_not_match": "email not match",
+            "password_less_x": "password can't less {{x}}"
         }
     }
 }

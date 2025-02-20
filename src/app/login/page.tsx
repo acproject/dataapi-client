@@ -1,53 +1,91 @@
 "use client"
 
-import { login} from '@/store/slice/authSlice';
 import { useState } from 'react';
-import type { RootState } from '@/store/redux';
-import { useAppDispatch, useAppSelector } from '@/store/redux'; 
-
-
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { useTranslation } from 'react-i18next';
+import '@/i18n';
 
 export default function LoginPage() {
-    const dispatch = useAppDispatch();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const {error, status} = useAppSelector((state: RootState) => state.auth);
+    const { t } = useTranslation();
+    const formSchema = z.object({
+        username: z.string().min(1, t("form.placeholder.username")),
+        password: z.string().min(1, t("form.placeholder.password")),
+    })
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const credentials = {username, password};
-        dispatch(login(credentials));
+    const [loading, setLoading] = useState(false);
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            username: "",
+            password: "",
+        },
+    });
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setLoading(true);
+        // Todo: login logic    
+        setLoading(false);
     };
 
-
-
-
-    
     return (
-        <div className='min-h-screen flex  items-center justify-center'>
-            <form onSubmit={handleSubmit} className='p-6 bg-white rounded shadow-md'>
-                {error && <div className='text-red-500 mb-4'>{error}</div> }
-                <input 
-                    type="text" 
-                    placeholder='username' 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)} 
-                    className='p-2 mb-4 border'
-                />
-                <input 
-                    type="password" 
-                    placeholder='password' 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    className='mb-4 p-2 border'
-                />
-                <button
-                    type='submit' disabled={status === 'loading'}>
-                    
-                      {status === 'loading' ? 'Loading...' : 'Login'}
-                    </button>
+        <div className='min-h-screen flex items-center justify-center'>
+            <Card className='w-full max-w-md'>
+                <CardHeader>
+                    <CardTitle className='text-2xl text-center'>{t("form.title.login")}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+                            <FormField
+                                control={form.control}
+                                name="username"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t("form.label.username")}/{t("form.label.email")}</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
 
-            </form>
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t("form.label.password")}</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} type="password" />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <Button type='submit' className='w-full' disabled={loading}>
+                                {loading ? t("status.signing") : t("form.button.login")}
+                            </Button>
+                            <div className='text-center text-sm'>
+                                {t("form.text.dont_have_account")}
+                                <Link href="/register" className=' text-primary hover:underline'>
+                                    {t('form.text.sign_in_now')}</Link>
+                            </div>
+                        </form>
+
+                    </Form>
+                </CardContent>
+            </Card>
+
         </div>
-    )
+    );
 }
