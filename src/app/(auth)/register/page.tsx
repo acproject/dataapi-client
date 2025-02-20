@@ -11,9 +11,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import * as z from 'zod';
 import { useTranslation } from 'react-i18next';
 import '@/i18n';
+import { useStore } from '@/store/useStore';
 
 export default function RegisterPage() {
     const { t } = useTranslation();
+    const { isDarkMode } = useStore();
 
     const passwordMiniSize = 6;
     const formSchema = z.object({
@@ -53,7 +55,7 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center p-4'>
+        <div className={`${isDarkMode? 'dark' : ''} min-h-screen flex items-center justify-center p-4 bg-background`}>
             <Card className='w-full max-w-md'>
                 <CardHeader>
                     <CardTitle>{t("form.title.register")}</CardTitle>

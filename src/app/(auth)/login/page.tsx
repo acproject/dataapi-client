@@ -11,9 +11,12 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { useTranslation } from 'react-i18next';
 import '@/i18n';
+import { useStore } from '@/store/useStore';
 
 export default function LoginPage() {
     const { t } = useTranslation();
+    const { isDarkMode } = useStore();
+
     const formSchema = z.object({
         username: z.string().min(1, t("form.placeholder.username")),
         password: z.string().min(1, t("form.placeholder.password")),
@@ -36,7 +39,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center'>
+        <div className={`${isDarkMode ? "dark" : ""} min-h-screen flex items-center justify-center bg-background`}>
             <Card className='w-full max-w-md'>
                 <CardHeader>
                     <CardTitle className='text-2xl text-center'>{t("form.title.login")}</CardTitle>
