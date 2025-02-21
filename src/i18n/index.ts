@@ -34,4 +34,8 @@ i18n.on('languageChanged', (lng) => {
     loadResources(lng);
 });
 
+export const changeLanguage = (lng:'en' | 'zh') => {
+    i18n.changeLanguage(lng);
+}
+
 export default i18n;

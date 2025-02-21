@@ -1,11 +1,13 @@
 'use client'
-import { Bell, Menu, Moon, Settings, Sun } from 'lucide-react';
+import { Bell, Menu, Moon, Settings, Sun  } from 'lucide-react';
 import Link from 'next/link';
 import { useStore } from '@/store/useStore';
 
+import LanguageSwitch from '@/app/(components)/LanguageSwitch'
+
 const Navbar = () => {
 
-    const { isDarkMode, isSidebarCollapsed, setSidebarCollapsed, setDarkMode } = useStore();
+    const { isDarkMode, isSidebarCollapsed,isChinese, setSidebarCollapsed, setDarkMode, setChinese } = useStore();
        const toggleSidebar = () => {
         setSidebarCollapsed(!isSidebarCollapsed);
     };
@@ -13,6 +15,8 @@ const Navbar = () => {
     const toggleDarkMode = () => {
        setDarkMode(!isDarkMode);
     };
+
+
     return (
         <div className='flex justify-between items-center w-full mb-7'>
             {/* LEFT SIDE */}
@@ -45,6 +49,9 @@ const Navbar = () => {
                         <span className='absolute -top-2 -right-2 inline-flex items-center justify-center px-[0.4rem] py-1 text-xs font-semibold leading-none text-red-100 bg-red-400 rounded-full'>
                             3
                         </span>
+                    </div>
+                    <div className='relative'>
+                        <LanguageSwitch />
                     </div>
                     <hr className='w-0 h-7 border border-solid border-l border-gray-300 mx-3' />
                     <div className='flex items-center gap-3 cursor-pointer'>

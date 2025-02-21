@@ -62,8 +62,8 @@ const Sidebar = () => {
         <div className={sidebarClassName}>
             {/* TOP Logo */}
             <div className={`flex gap-3 justify-between md:justify-normal items-center pt-8 
-                ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
-                <Logo className="w-10 h-10" />
+                ${isSidebarCollapsed ? "px-2" : "px-8"}`}>
+                <Logo className="w-11 h-11" />
                 <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl`}>{t("app.title")}</h1>
                 {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
                 <button className='md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100'

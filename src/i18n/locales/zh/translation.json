@@ -3,6 +3,10 @@
         "title": "API-编辑器",
         "description": "通过数据快速实现API接口的低代码编辑器"
     },
+    "language": {
+        "zh": "简体中文",
+        "en": "English"
+    },
 
     "flow": {
         "button": {

@@ -3,6 +3,10 @@
         "title": "Data-API-Editor",
         "description": "A low-code editor that quickly implements API interfaces through data."
     },
+    "language": {
+        "zh": "简体中文",
+        "en": "English"
+    },
 
     "flow": {
         "button": {
