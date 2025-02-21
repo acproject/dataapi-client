@@ -7,7 +7,7 @@ import LanguageSwitch from '@/app/(components)/LanguageSwitch'
 
 const Navbar = () => {
 
-    const { isDarkMode, isSidebarCollapsed,isChinese, setSidebarCollapsed, setDarkMode, setChinese } = useStore();
+    const { isDarkMode, isSidebarCollapsed, setSidebarCollapsed, setDarkMode } = useStore();
        const toggleSidebar = () => {
         setSidebarCollapsed(!isSidebarCollapsed);
     };
