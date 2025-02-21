@@ -37,8 +37,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const lang = (await headers()).get("accept-language")?.split(",")[0].split("-")[0] || "zh";
-  console.log("lang", lang);
+  const lang = (await headers()).get("accept-language")?.split(",")[0].split("-")[0] || "en";
   return (
     <html lang={lang}>
       <body className={inter.className}>{children}</body>

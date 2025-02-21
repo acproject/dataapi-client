@@ -43,7 +43,9 @@
             "store": "Store",
             "flows": "Flows",
             "knowledge": "Knowledge",
-            "settings": "Settings"
+            "settings": "Settings",
+            "plugins":"plugins",
+            "gateways":"gateways"
         }
     },
     "status": {

@@ -72,7 +72,7 @@ const FlowEditor = () => {
     };
 
     return (
-        <div className='flex h-screen'>
+        <div className='flex h-[calc(100vh-7rem)]'>
             <FlowSidebar onNodeClick={handleNodeClick} />
             <div className='flex-1' ref={reactFlowWrapper}>
                 <ReactFlow
@@ -92,12 +92,11 @@ const FlowEditor = () => {
                 </ReactFlow>
             </div>
             <FlowPropertyPanel node={selectedNode} onUpdate={updateNodeData} />
-            <div className='absolute top-140 right-14 z-10'>
-                {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            {/* <div className='absolute top-140 right-14 z-10'>
                 <button className='bg-blue-500 text-white px-4 py-2 rounded'>
                     {t('flow.button.save')}
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -43,7 +43,9 @@
             "store": "存储管理",
             "flows": "流程管理",
             "knowledge": "知识库",
-            "settings": "设置"
+            "settings": "设置",
+            "plugins":"插件",
+            "gateways":"网关"
         }
     },
     "status": {
